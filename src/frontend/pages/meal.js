@@ -1,8 +1,5 @@
 window.handleMealRequest = params=> {
   document.body.innerHTML = `
-  <h1>Meal with id ${params.id}</h1>
-
-
   <style>
   header{
     width: 100%;
@@ -101,13 +98,13 @@ a:hover{
             <div class = "form-div">
             <input type="text" id="name" >
            </div> 
-           <div class = ".form-div">
+           <div class = "form-div">
             <label for="number_of">Guests</label>
             </div>
             <div class = "form-div">
             <input type="number" id= "number_of_guests" >
           </div>
-          <div class = ".form-div">
+          <div class = "form-div">
           <button id = "sub-b">Reservation</button>
             </div>
          
@@ -116,11 +113,7 @@ a:hover{
 </main>
 <footer>
   <h3>Ali baba best food in Estonia.for more info pleass contact on: <br> Mobil. 29920518 Email. dr.wael85@gmail.com</h3>
-</footer>
-  <script>
-  
-  </script>
-  
+</footer>  
   `;
   let mealTitle;
   fetch(`/api/meals/${params.id}`)
