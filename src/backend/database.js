@@ -5,11 +5,11 @@ require("dotenv").config();
 const knex = require("knex")({
   client: "mysql2",
   connection: {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host:'eu-cdbr-west-03.cleardb.net', //process.env.DB_HOST,
+    port: 3306,//process.env.DB_PORT,
+    user:'b02181213c300c' ,//process.env.DB_USER,
+    password:'c558cf21',// process.env.DB_PASSWORD,
+    database:'heroku_3d1a913d7d02d82'//process.env.DB_NAME
   },
   pool: { min: 0, max: 7 },
 });

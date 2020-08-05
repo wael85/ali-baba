@@ -76,7 +76,7 @@ a:hover{
    <img id = "head" src="background.jpg" alt="" srcset="">
    <nav>
        <a class = "nav-a" href="../">Home</a>
-       <a class = "nav-a" href="">Rescervation</a>
+       <a class = "nav-a" href="/new-meal">Add meal</a>
        <a class = "nav-a" href="">Reviws</a>
        <a class = "nav-a" href="">About us</a>
     </nav>
