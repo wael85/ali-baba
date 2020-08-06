@@ -17,11 +17,11 @@ app.use(express.static(buildPath));
 app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
+app.use('upload', express.static('upload'));
 
 router.use("/meals", mealsRouter);
 router.use("/reservation",reservationRouter);
 router.use("/review",reviewRouter);
-
 app.use("/api", router);
 
 // For week4 no need to look into this!

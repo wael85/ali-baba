@@ -99,13 +99,15 @@ a:hover{
         const ul = document.createElement('ul');
         const img = document.createElement('img');
         if(!meal.img){
-          img.src ='nopic.jpg';
+          img.src ='./upload/web-defult-img.jpg';
         }else{
-          const arrayBufferView = new Uint8Array( meal.img.data );
+          //if we store image as blob in data base use code below
+         /* const arrayBufferView = new Uint8Array( meal.img.data );
           const blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
           const urlCreator = window.URL || window.webkitURL;
           const imageUrl = urlCreator.createObjectURL( blob );        
-          img.src = imageUrl;
+          img.src = imageUrl;*/
+          img.src = meal.img;
         }
         const title = document.createElement('li');
         title.innerText = meal.title;

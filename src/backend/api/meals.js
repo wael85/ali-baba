@@ -2,7 +2,33 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const knex = require("../database");
-const { sum } = require("../database");
+let idImg= new Date().toISOString().replace(/:/g,"-");
+console.log(idImg);
+const multer =require("multer");
+const storeg = multer.diskStorage({
+  destination : function(req ,file, cb){
+    cb(null,'./upload');
+  },
+  filename : function(req, file , cb){
+    cb(null , idImg + file.originalname)
+  }
+});
+const fileFilter = (req,file,cb)=>{
+   //reject a file
+   if (file.mimetype ==='image/jpeg' || file.mimetype ==='image/png'){
+       cb(null, true)
+   }else{
+    cb(null,false)
+   }
+  
+}
+const upload = multer({
+  storage: storeg ,
+   limits : {
+  fileSize : 1024*1024* 5
+     },
+  fileFilter : fileFilter
+});
 
 router.get("/", async (request, response) => {
   
@@ -35,9 +61,20 @@ router.get("/", async (request, response) => {
     throw error;
   }
 });
-router.post("/",async (req,res)=>{
+router.post("/",upload.single('img'),async (req,res)=>{
   try{
-    const insert = await knex('meal').insert(req.body);
+    const meal = {
+      'title': req.body.title,
+      'description' : req.body.description ,
+      'location' : req.body.location,
+      'when': req.body.when,
+      'max_reservation' : req.body.max_reservation,
+      'price' : req.body.price,
+      'created_date' : new Date(),
+      'img' : req.file.path
+
+    }
+    const insert = await knex('meal').insert(meal);
     res.send(insert); 
   } catch(error){
     throw error;
