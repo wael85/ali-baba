@@ -5,9 +5,9 @@ const knex = require("../database");
 let idImg= new Date().toISOString().replace(/:/g,"-");
 console.log(idImg);
 const multer =require("multer");
-const storeg = multer.diskStorage({
+/*const storeg = multer.diskStorage({
   destination : function(req ,file, cb){
-    cb(null,'./upload');
+    cb(null,'./uploads/');
   },
   filename : function(req, file , cb){
     cb(null , idImg + file.originalname)
@@ -22,13 +22,15 @@ const fileFilter = (req,file,cb)=>{
    }
   
 }
-const upload = multer({
+const uploads = multer({
   storage: storeg ,
    limits : {
   fileSize : 1024*1024* 5
      },
   fileFilter : fileFilter
 });
+*/
+const uploads = multer();
 
 router.get("/", async (request, response) => {
   
@@ -61,9 +63,10 @@ router.get("/", async (request, response) => {
     throw error;
   }
 });
-router.post("/",upload.single('img'),async (req,res)=>{
+router.post("/",uploads.single('img'),async (req,res)=>{
   try{
-    const meal = {
+  
+   const meal = {
       'title': req.body.title,
       'description' : req.body.description ,
       'location' : req.body.location,
@@ -71,11 +74,11 @@ router.post("/",upload.single('img'),async (req,res)=>{
       'max_reservation' : req.body.max_reservation,
       'price' : req.body.price,
       'created_date' : new Date(),
-      'img' : req.file.path
+      'img' : req.file.buffer
 
     }
     const insert = await knex('meal').insert(meal);
-    res.send(insert); 
+    res.send("all good"); 
   } catch(error){
     throw error;
   }  
