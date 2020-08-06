@@ -74,7 +74,7 @@ router.post("/",uploads.single('img'),async (req,res)=>{
       'max_reservation' : req.body.max_reservation,
       'price' : req.body.price,
       'created_date' : new Date(),
-      'img' : req.file.buffer
+      'img' : req.file.buffer || null
 
     }
     const insert = await knex('meal').insert(meal);
