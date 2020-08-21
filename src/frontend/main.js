@@ -8,6 +8,7 @@ router.on("/meal/:id", window.handleMealRequest).resolve();
 router.on("/new-meal", window.handelNewMeal).resolve();
 router.on("/reviews", window.handelReviews).resolve();
 router.on("/review/:id", window.handelReview).resolve();
+router.on("/meal/:id/reviews", window.handleShowMealReviews).resolve();
 
 
 

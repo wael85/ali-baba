@@ -118,13 +118,15 @@ a:hover{
         button.innerHTML= `<input type=button onClick="location.href='../meal/${meal.id}'" value='Book this Meal' class = "div-button">`;       
         const button2  = document.createElement('div');
         button2.innerHTML= `<input type=button onClick="location.href='../review/${meal.id}'" value='Add review ' class = "div-button">`;
-        
+        const showReview =  document.createElement('div');
+        showReview.innerHTML= `<input type=button onClick="location.href='../meal/${meal.id}/reviews'" value='Show meal reviews' class = "div-button">`;
         ul.appendChild(img)
         ul.appendChild(title);
         ul.appendChild(description);
         div.appendChild(ul);
         div.appendChild(button);
         div.appendChild(button2);
+        div.appendChild(showReview);
         mainMenu.appendChild(div);
         div.className="meal-div";
        
