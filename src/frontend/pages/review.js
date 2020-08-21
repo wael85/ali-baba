@@ -1,6 +1,6 @@
-window.handleMealRequest = params=> {
-  document.body.innerHTML = `
-  <style>
+window.handelReview = (params)=>{
+    document.body.innerHTML = ` 
+    <style>
   header{
     width: 100%;
     height: 300px;
@@ -25,7 +25,7 @@ main{
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-equal;
+    justify-content: space-evenly;
 }
 .form-div{
   margin-top : 15pxpx
@@ -84,7 +84,7 @@ a:hover{
    <img id = "head" src="../background.jpg" alt="" srcset="">
    <nav>
         <a class = "nav-a" href="../">Home</a>
-        <a class = "nav-a" href="">Rescervation</a>
+        <a class = "nav-a" href="/new-meal">Add meal</a>
         <a class = "nav-a" href="">Reviws</a>
         <a class = "nav-a" href="">About us</a>
     </nav>
@@ -93,29 +93,39 @@ a:hover{
    <div style="width : 40% ; margin-left: 10px;">
         
            <div class = "form-div">
-            <label for="full-name">Full name</label>
+            <label for="title">Title</label>
             </div>
             <div class = "form-div">
-            <input type="text" id="name" >
+            <input type="text" id="title" name="title" >
            </div> 
+
            <div class = "form-div">
-            <label for="number_of">Guests</label>
+            <label for="reviewDescription">Description</label>
             </div>
             <div class = "form-div">
-            <input type="number" id= "number_of_guests" >
+            <input type="text" id="reviewDescription" >
+           </div> 
+
+           <div class = "form-div">
+            <label for="stars">Stars</label>
+            </div>
+            <div class = "form-div">
+            <input type="number" id= "stars" name ="stars" max = 5 min = 1>
           </div>
+
           <div class = "form-div">
-          <button id = "sub-b">Reservation</button>
+          <button id = "sub-b">Set review</button>
             </div>
          
    </div>
         
 </main>
+
 <footer>
   <h3>Ali baba best food in Estonia.for more info pleass contact on: <br> Mobil. 29920518 Email. dr.wael85@gmail.com</h3>
-</footer>  
-  `;
-  let mealTitle;
+</footer>  `;
+let mealTitle;
+  //read the target meal info
   fetch(`/api/meals/${params.id}`)
   .then(res => res.json())
   .then(respons=> {
@@ -145,31 +155,36 @@ a:hover{
         ul.appendChild(description);
         ul.appendChild(back);
         meal.appendChild(ul);
+
+        //post review to the database
        const submitB = document.getElementById("sub-b");
        console.log(submitB)
        submitB.addEventListener("click",function(e){
          e.preventDefault();
-        const name = document.getElementById("name");
-        const guests = document.getElementById("number_of_guests");
-        let dato = Date.now();
-        console.log(new Date(dato).toISOString().replace("T"," "));
-        fetch("/api/reservation",{
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
+           
+           const title = document.getElementById("title");
+           const reviewDescription = document.getElementById("reviewDescription");
+           const stars = document.getElementById("stars");
+           let dato = Date.now();
+           console.log(stars.value);
+           fetch("/api/review",{
+             method: 'post',
+             headers: {
+               'Content-Type': 'application/json'
             // 'Content-Type': 'applinew Date(dato)cation/x-www-form-urlencoded',
-          },
-          body : JSON.stringify({
-            "number_of_guests" : guests.value,
-            "full_name ": name.value,
-            "meal_id" : params.id,
-            "created_date" : new Date(dato).toISOString().replace("T"," ").substring(0,20)
+             },
+             body : JSON.stringify({
+               "stars" : stars.value,
+               "description ": reviewDescription.value,
+               "title" : title.value,
+               "meal_id" : params.id,
+               "created_date" : new Date(dato).toISOString().replace("T"," ").substring(0,20)
             
           }) 
         }).then(res2 => res2.json())
         .then((res3) => {
            meal.innerHTML=`<div class = "sucsses">
-           <h2>Tanks for your reservation</h2><p>You sucsessfuly book 
+           <h2>Tanks for your feed back</h2><p>You sucsessfuly review 
            <span>${mealTitle}</span>
             on referanc number ${res3[0]}</p>
             <input type=button onClick="location.href='../meals'" value='Back to menu'></input>
@@ -181,4 +196,4 @@ a:hover{
       
   })
   
-};
+}

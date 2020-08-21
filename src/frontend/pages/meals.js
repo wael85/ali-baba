@@ -26,7 +26,7 @@ main{
     align-items: flex-start;
     justify-content: space-around;
 }
-div{
+.meal{
     height: 400px;
     width:300px ;           
 }
@@ -77,7 +77,7 @@ a:hover{
    <nav>
        <a class = "nav-a" href="../">Home</a>
        <a class = "nav-a" href="/new-meal">Add meal</a>
-       <a class = "nav-a" href="">Reviws</a>
+       <a class = "nav-a" href="/reviews">Reviws</a>
        <a class = "nav-a" href="">About us</a>
     </nav>
 </header>
@@ -115,12 +115,16 @@ a:hover{
         description.innerText = meal.description;
 
         const button  = document.createElement('div');
-        button.innerHTML= `<input type=button onClick="location.href='../meal/${meal.id}'" value='Back to menu'>`;           
+        button.innerHTML= `<input type=button onClick="location.href='../meal/${meal.id}'" value='Book this Meal' class = "div-button">`;       
+        const button2  = document.createElement('div');
+        button2.innerHTML= `<input type=button onClick="location.href='../review/${meal.id}'" value='Add review ' class = "div-button">`;
+        
         ul.appendChild(img)
         ul.appendChild(title);
         ul.appendChild(description);
         div.appendChild(ul);
         div.appendChild(button);
+        div.appendChild(button2);
         mainMenu.appendChild(div);
         div.className="meal-div";
        
