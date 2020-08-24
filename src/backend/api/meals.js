@@ -84,13 +84,11 @@ router.post("/",uploads.single('img'),async (req,res)=>{
     throw error;
   }  
 });
-router.get("/:id/reviwes" ,async (request,response)=>{
+router.get("/:id/reviews" ,async (request,response)=>{
     try {
       const id = request.params.id;
-      const result = await knex("meal")
-      .join("review","meal.id","meal_id")
-      .select("meal.id","meal.img","meal.title","reviwe.title","review.description","review.stars")
-      .where({id : id});
+      const result = await knex.select('meal.id','meal.title as mealt','review.title','review.created_date').from(`meal`)
+      .join("review","review.meal_id" , "meal.id")
       response.json(result);
     } catch (error) {
       throw error;

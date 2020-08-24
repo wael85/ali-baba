@@ -63,7 +63,7 @@ window.handleShowMealReviews = params => {
     color: blac;
     text-decoration: none;
     opacity : 0.9;
-    height : 100%
+    height : 100%;
     vertical-align: middle;
   }
   ul{
@@ -97,11 +97,12 @@ window.handleShowMealReviews = params => {
     <h3>Ali baba best food in Estonia.for more info pleass contact on: <br> Mobil. 29920518 Email. dr.wael85@gmail.com</h3>
   </footer>  
     `;
-    let mealTitle;
-    fetch(`/api/meals/${params.id}`)
-    .then(res => res.json())
-    .then(respons=> {
-      let res = respons[0];
+   // let mealTitle;
+    fetch(`/api/meals/${params.id}/reviews`)
+    .then(res =>res.json())
+      .then(res=> {
+      console.log('here',res);
+     /* let res = respons[0];
       mealTitle = res.title;
       const meal = document.querySelector(".meal");
       const ul = document.createElement('ul');
@@ -161,7 +162,7 @@ window.handleShowMealReviews = params => {
           
          });
         
-    })
+        */   })
     
   };
   
