@@ -100,15 +100,16 @@ window.handleShowMealReviews = params => {
    // let mealTitle;
     fetch(`/api/meals/${params.id}/reviews`)
     .then(res =>res.json())
-      .then(res=> {
-      console.log('here',res);
-     /* let res = respons[0];
-      mealTitle = res.title;
+      .then(respons=> {
+      console.log('here',respons);
+     let res = respons[0];
       const meal = document.querySelector(".meal");
+      const mealDiv = document.createElement('div');
+      const reviewDiv = document.createElement('div');
       const ul = document.createElement('ul');
           const img = document.createElement('img');
           if(!res.img){
-            img.src ='../nopic.jpg';
+            img.src ='/nopic.jpg';
           }else{
             const arrayBufferView = new Uint8Array( res.img.data );
             const blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
@@ -117,52 +118,24 @@ window.handleShowMealReviews = params => {
             img.src = imageUrl;
           }
           const title = document.createElement('li');
-          title.innerText = res.title;
-          const description = document.createElement('li');
-          description.innerText = res.description;
+          title.innerText = res.mealt;
+          //const description = document.createElement('li');
+          //description.innerText = res.description;
   
           const back = document.createElement('li');
           back.innerHTML = `<input type=button onClick="location.href='/meals'" value='Back to menu'></input>`      
           ul.appendChild(img)
           ul.appendChild(title);
-          ul.appendChild(description);
+         // ul.appendChild(description);
           ul.appendChild(back);
-          meal.appendChild(ul);
-         const submitB = document.getElementById("sub-b");
-         console.log(submitB)
-         submitB.addEventListener("click",function(e){
-           e.preventDefault();
-          const name = document.getElementById("name");
-          const guests = document.getElementById("number_of_guests");
-          let dato = Date.now();
-          console.log(new Date(dato).toISOString().replace("T"," "));
-          fetch("/api/reservation",{
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json'
-              // 'Content-Type': 'applinew Date(dato)cation/x-www-form-urlencoded',
-            },
-            body : JSON.stringify({
-              "number_of_guests" : guests.value,
-              "full_name ": name.value,
-              "meal_id" : params.id,
-              "created_date" : new Date(dato).toISOString().replace("T"," ").substring(0,20)
-              
-            }) 
-          }).then(res2 => res2.json())
-          .then((res3) => {
-             meal.innerHTML=`<div class = "sucsses">
-             <h2>Tanks for your reservation</h2><p>You sucsessfuly book 
-             <span>${mealTitle}</span>
-              on referanc number ${res3[0]}</p>
-              <input type=button onClick="location.href='/meals'" value='Back to menu'></input>
-              </div>`;
-            })
+          mealDiv.appendChild(ul);
+          meal.appendChild(mealDiv)
+
+                     }) 
+         
             
           
-         });
-        
-        */   })
+         
     
   };
   

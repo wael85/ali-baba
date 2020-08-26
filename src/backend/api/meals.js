@@ -6,6 +6,7 @@ let idImg= new Date().toISOString().replace(/:/g,"-");
 console.log(idImg);
 const multer =require("multer");
 const { request, response } = require("express");
+const { having } = require("../database");
 /*const storeg = multer.diskStorage({
   destination : function(req ,file, cb){
     cb(null,'./uploads/');
@@ -84,11 +85,15 @@ router.post("/",uploads.single('img'),async (req,res)=>{
     throw error;
   }  
 });
+//'meal.id','meal.img','meal.title as mealt','review.title','review.created_date','review.description'
 router.get("/:id/reviews" ,async (request,response)=>{
     try {
       const id = request.params.id;
-      const result = await knex.select('meal.id','meal.title as mealt','review.title','review.created_date').from(`meal`)
-      .join("review","review.meal_id" , "meal.id")
+      const result = await knex.select('meal.id as main','meal.title as mealt','review.title','review.created_date','review.description').from(`meal`)
+      .join("review" , "review.meal_id" ,"meal.id")
+      .groupBy("main")
+      .having('main','=',id)
+
       response.json(result);
     } catch (error) {
       throw error;
