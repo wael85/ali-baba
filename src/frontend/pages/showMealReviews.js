@@ -100,9 +100,8 @@ window.handleShowMealReviews = params => {
    // let mealTitle;
     fetch(`/api/meals/${params.id}/reviews`)
     .then(res =>res.json())
-      .then(respons=> {
-      console.log('here',respons);
-     let res = respons[0];
+      .then(res=> {
+      console.log('here',res);
       const meal = document.querySelector(".meal");
       const mealDiv = document.createElement('div');
       const reviewDiv = document.createElement('div');
@@ -118,9 +117,14 @@ window.handleShowMealReviews = params => {
             img.src = imageUrl;
           }
           const title = document.createElement('li');
-          title.innerText = res.mealt;
-          //const description = document.createElement('li');
-          //description.innerText = res.description;
+          title.innerText = res.mealTitle;
+          const reviewUl = document.createElement('ul');
+          res.data.forEach(review => {
+            const li = document.createElement('li');
+            li.innerHTML = `<h3>${review.reviewTitle} : </h3><p>${review.reviewDescription}</p><p>${new Date(review.reviewDate).toISOString().substr(0,10)}</p>`;
+            reviewUl.appendChild(li);
+          });
+         
   
           const back = document.createElement('li');
           back.innerHTML = `<input type=button onClick="location.href='/meals'" value='Back to menu'></input>`      
@@ -129,7 +133,9 @@ window.handleShowMealReviews = params => {
          // ul.appendChild(description);
           ul.appendChild(back);
           mealDiv.appendChild(ul);
-          meal.appendChild(mealDiv)
+          reviewDiv.appendChild(reviewUl);
+          meal.appendChild(mealDiv);
+          meal.appendChild(reviewUl);
 
                      }) 
          

@@ -89,12 +89,27 @@ router.post("/",uploads.single('img'),async (req,res)=>{
 router.get("/:id/reviews" ,async (request,response)=>{
     try {
       const id = request.params.id;
-      const result = await knex.select('meal.id as main','meal.title as mealt','review.title','review.created_date','review.description').from(`meal`)
-      .join("review" , "review.meal_id" ,"meal.id")
-      .groupBy("main")
-      .having('main','=',id)
-
-      response.json(result);
+      const result = await knex.select('meal.id as mealId','meal.img','meal.title as mealt','review.title','review.created_date as date','review.description').from(`meal`)
+      .leftJoin("review" , "review.meal_id" ,"meal.id")
+      .having('mealId','=',id)
+      
+      const arrOfReviews = [];
+      for(let i = 0; i < result.length ; i++ ){
+        const review = {
+          'reviewTitle' : result[i].title,
+          'reviewDescription' : result[i].description,
+          'reviewDate' : result[i].date
+        }
+        arrOfReviews.push(review)
+      }
+      const reStractuerResult = {
+        'mealId':result[0].mealId,
+        'mealTitle' : result[0].mealt,
+        'img' : result[0].img,
+        'data' : arrOfReviews
+    };
+      
+      response.json(reStractuerResult);
     } catch (error) {
       throw error;
     }
