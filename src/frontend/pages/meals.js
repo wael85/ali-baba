@@ -21,20 +21,24 @@ main{
 main{
   height: fit-content;
     display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
+
 }
 .meal{
     height: 400px;
-    width:300px ;           
+    width:300px ;  
+    max-width: 400px;         
 }
 img{
    position: relative;
    width: 90%;
    height : 200px;
    margin-bottom : 15px;
+   
 
 }
 
@@ -94,8 +98,8 @@ a:hover{
       console.log(meals);
       let mainMenu = document.querySelector(".main-menu");
       meals.forEach(meal => {
-        const div = document.createElement('div');
-        div.className = "meal";
+        const listMealDiv = document.createElement('div');
+        listMealDiv.className = "meal";
         const ul = document.createElement('ul');
         const img = document.createElement('img');
         if(!meal.img){
@@ -123,12 +127,12 @@ a:hover{
         ul.appendChild(img)
         ul.appendChild(title);
         ul.appendChild(description);
-        div.appendChild(ul);
-        div.appendChild(button);
-        div.appendChild(button2);
-        div.appendChild(showReview);
-        mainMenu.appendChild(div);
-        div.className="meal-div";
+        listMealDiv.appendChild(ul);
+        listMealDiv.appendChild(button);
+        listMealDiv.appendChild(button2);
+        listMealDiv.appendChild(showReview);
+        mainMenu.appendChild(listMealDiv);
+        
        
         
       });

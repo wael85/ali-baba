@@ -104,6 +104,7 @@ window.handleShowMealReviews = params => {
       console.log('here',res);
       const meal = document.querySelector(".meal");
       const mealDiv = document.createElement('div');
+      mealDiv.style = {'width' : '50%'};
       const reviewDiv = document.createElement('div');
       const ul = document.createElement('ul');
           const img = document.createElement('img');
