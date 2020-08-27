@@ -80,7 +80,11 @@ router.post("/",uploads.single('img'),async (req,res)=>{
 
     }
     const insert = await knex('meal').insert(meal);
-    res.send("all good"); 
+    res.send(`<h1>You had submit your meal successfuly.. you will be redirect to the main menu</h1>
+    <script> 
+    setTimeout(function(){ 
+      window.location.href = "../meals";
+      ; }, 3000);</script>`); 
   } catch(error){
     throw error;
   }  

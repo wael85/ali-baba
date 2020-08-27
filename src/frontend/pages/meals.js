@@ -1,5 +1,8 @@
 window.handleMealsRequest = () => {
   document.body.innerHTML = `<style>
+  budy{
+    min-width : 500px;
+  }
   header{
     width: 100%;
     height: 300px;
@@ -26,12 +29,14 @@ main{
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
+    
 
 }
 .meal{
     height: 400px;
     width:300px ;  
-    max-width: 400px;         
+    max-width: 400px;    
+    min-width :300px;     
 }
 img{
    position: relative;

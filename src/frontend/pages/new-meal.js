@@ -1,5 +1,6 @@
 window.handelNewMeal = ()=>{
- document.body.innerHTML = ` 
+ document.body.innerHTML =
+  ` 
  <style>
   header{
     width: 100%;
@@ -88,7 +89,7 @@ a:hover{
      <input type="text" id="title" name="title" placeholder="title">
      <input type="text" id="description" name="description" placeholder="description">
      <input type="text" id="location" name="location" placeholder="location">
-     <input type="date" id="when" name="when" placeholder="when">
+     <input type="date" id="when" name="when" placeholder="when" min = {new Date().toISOString().substr(0,10)}>
      <input type="number" id="max_reservation" name="max_reservation" placeholder="max_reservation">
      <input type="number" id="price" name="price" placeholder="price">
      <input type="file" id="img" name="img" placeholder="img">
