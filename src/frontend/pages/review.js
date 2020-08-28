@@ -85,7 +85,7 @@ a:hover{
    <nav>
         <a class = "nav-a" href="../">Home</a>
         <a class = "nav-a" href="/new-meal">Add meal</a>
-        <a class = "nav-a" href="">Reviws</a>
+        <a class = "nav-a" href="/meals">Main menu</a>
         <a class = "nav-a" href="">About us</a>
     </nav>
 </header>

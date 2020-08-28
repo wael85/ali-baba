@@ -16,10 +16,8 @@ window.handleShowMealReviews = params => {
       padding: 0px;
   }
   main{
-      border: solid black 1px;
-      height: 100vh;
-  }
-  main{
+    border: solid black 1px;
+    height: 100vh;
     height: fit-content;
       display: flex;
       flex-direction: row;
@@ -85,7 +83,7 @@ window.handleShowMealReviews = params => {
      <nav>
      <a class = "nav-a" href="../">Home</a>
      <a class = "nav-a" href="/new-meal">Add meal</a>
-     <a class = "nav-a" href="">Reviws</a>
+     <a class = "nav-a" href="/meals">Main menu</a>
      <a class = "nav-a" href="">About us</a>
       </nav>
   </header>
@@ -104,8 +102,9 @@ window.handleShowMealReviews = params => {
       console.log('here',res);
       const meal = document.querySelector(".meal");
       const mealDiv = document.createElement('div');
-      mealDiv.style = {'width' : '50%'};
+      mealDiv.style.width = '40%'; 
       const reviewDiv = document.createElement('div');
+      reviewDiv.style.width = '55%';
       const ul = document.createElement('ul');
           const img = document.createElement('img');
           if(!res.img){

@@ -86,7 +86,7 @@ a:hover{
    <nav>
        <a class = "nav-a" href="../">Home</a>
        <a class = "nav-a" href="/new-meal">Add meal</a>
-       <a class = "nav-a" href="/reviews">Reviws</a>
+       <a class = "nav-a" href="/meals">Main menu</a>
        <a class = "nav-a" href="">About us</a>
     </nav>
 </header>
@@ -136,10 +136,7 @@ a:hover{
         listMealDiv.appendChild(button);
         listMealDiv.appendChild(button2);
         listMealDiv.appendChild(showReview);
-        mainMenu.appendChild(listMealDiv);
-        
-       
-        
+        mainMenu.appendChild(listMealDiv);        
       });
     })
 };
