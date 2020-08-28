@@ -20,6 +20,9 @@ window.handleHomeRequest = () => {
           position: relative;   
           top:90%;
           margin-left: 47%;
+          font-size: larger;
+          color :black;
+          
       }
     
       footer{
